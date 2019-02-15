@@ -1,0 +1,59 @@
+\documentclass{apa}
+\begin{document}
+
+\title{UON Cognitive Lab Shared BibTeX Resource}
+
+Download the project and copy out the file uoncoglab.bib. Or link it.
+
+A problem here is that the duplicates have been removed, but the \emph{nearly} duplicate entries have been kept. E.g. There are different versions of the entry for Rat78. They have different capitalisation or similar, but it probably will not matter much to anyone. I'm leaving them for now. 
+\cite{ratcliff1978theory}
+\cite{ratcliff1978theory*1}
+\cite{ratcliff1978theory*2}
+
+In each case, there is one entry without an asterisk. 
+
+
+
+% I have a settings files called "settingsrsc" with this in it:
+%   delete.field      = "annote"
+%   delete.field    = "shorttitle"
+%   delete.field     = "date-added"
+%   delete.field     = "date-modified"
+%   delete.field     = "url"
+%   delete.field      = "file"
+%   delete.field      = "keywords"
+%   delete.field      = "abstract"
+%   delete.field      = "mendeley-tags"
+%   preserve.key.case = on
+%   print.align.key   = 0
+%   print.indent      = 2
+%   print.align       = 0
+%   print.line.length = 9999
+%   print.wide.equal  = on
+%   print.equal.right = off
+%   print.use.tab     = off
+%   check.double = on
+%   check.double.delete = on
+%   pass.comments = off
+
+
+% I used this line to merge:
+% bibtool -r settingsrsc -s *bib -o test.bib
+
+%I used this line to generate the keys:
+%bibtool -f %-1n\(author\)%4d\(year\)%-W\(title\) test.bib -o test1.bib
+
+% I used a simple search and replace to remove all the .ea entries. Either using sed:
+% sed 's/\.ea//' < test1.bib > uoncoglab.bib 
+
+% .. or an editor.
+
+
+
+There is a second bib file here,called ``uoncoglabshort.bib''. That one is less than 1.0MB, which is good for Overleaf. It has some fields stripped which some people might not like (e.g. I removed ``shorttitle'', ``url'', ``abstract''). I also used more aggressive settings on the removal of near-duplicate entries. It made a massive difference. 
+
+If you aren't sure, or are just getting started, I suggest using the short one.
+
+\bibliography{uoncoglabshort}
+
+\end{document}
